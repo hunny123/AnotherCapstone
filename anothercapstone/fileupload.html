@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="card.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      .hero {
+        background-image: url("background.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh;
+      }
+      .nav-link {
+        color: lightgrey !important;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        padding: 3px 5px 3px 5px;
+        font-size: 22px;
+        font-weight: 600;
+      }
+      .nav-link:hover {
+        background-color: rgba(20, 20, 20, 0.8);
+      }
+      .text-scheme {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      }
+      .btn-round {
+        border-radius: 15rem;
+      }
+      .bg-sehme {
+        background-color: #11074f;
+      }
+      .onTop {
+        position: sticky;
+        top: 0;
+        background: transparent;
+        padding: 15px 0 15px 0;
+      }
+      .onTop .logo {
+        height: 80px;
+      }
+      .onTopUntouch {
+        position: fixed;
+        top: 0;
+        background: #140b56;
+        padding: 10px 0 10px 0;
+        z-index: 999;
+      }
+      .onTopUntouch .logo {
+        height: 50px;
+      }
+      .file {
+        width: 500px;
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero " id="home">
+      <nav class="navbar navbar-expand-lg navbar-light onTop w-100 " id="nav">
+        <a class="navbar-brand" href="#home"
+          ><img src="logo.png" class="ml-5 logo"
+        /></a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa fa-bars text-white" style="font-size:40px;"></i>
+        </button>
+        <div class="collapse navbar-collapse pl-3" id="navbarNav">
+          <ul class="navbar-nav ml-auto mr-5">
+            <li class="nav-item">
+              <a class="nav-link" href="#home"
+                >Home <span class="sr-only">(current)</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#team">Meet Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="container  mt-5">
+        <h1 class="text-center text-white">
+          Upload the file for Getting best Algorthim
+        </h1>
+        <div class="file mx-auto p-3 bg-light  ">
+          <input
+            type="file"
+            class="  p-4 text-center "
+            id="customFile"
+            name="filename"
+          />
+          <input type="submit" class="btn  ml-4 btn-primary" />
+          <div class="form-group w-50 mx-auto">
+            <label for="exampleFormControlSelect1">Select Any Algorthim</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option> Logistic Regression</option>
+              <option> Decision Tree</option>
+              <option> Random Forest</option>
+              <option> SVM</option>
+              <option> KNN</option>
+              <option> Naive Bayes</option>
+              <option> Xgboost</option>
+              <option> LightGBM</option>
+              <option> Catboost</option>
+              <option>Adaboost</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
