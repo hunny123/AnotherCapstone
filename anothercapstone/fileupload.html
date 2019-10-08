@@ -185,7 +185,7 @@
               
               <div class="carousel-item ">
                 <div class="sticky-top bg-light p-1">
-                  <button class="btn btn-primary float-left prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <button class="btn btn-primary float-left " href="#carouselExampleIndicators" role="button" data-slide="prev">
                     Go back
                   </button>
                   <h3 class="text-center w-80  ">
@@ -200,6 +200,7 @@
                     id="customFile"
                     name="filename"
                     required
+                    accept=".xlsx, .xls, .csv"
                   />
                   <input type="submit" class="btn btn-primary" value="next" />
                  
@@ -208,7 +209,7 @@
                 </div>
                 <div class="carousel-item ">
                   <div class="sticky-top bg-light p-1">
-                    <button class="btn btn-primary float-left prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <button class="btn btn-primary float-left " href="#carouselExampleIndicators" role="button" data-slide="prev">
                       Go back
                     </button>
                     <h3 class="text-center w-80  ">
@@ -237,7 +238,24 @@
                 </div>
                 <div class="carousel-item ">
                   <div class="sticky-top bg-light p-1">
-                    <button class="btn btn-primary float-left prev" href="#carouselExampleIndicators" role="button" >
+                    <button class="btn btn-primary float-left " href="#carouselExampleIndicators" role="button" data-slide="prev">
+                      Go back
+                    </button>
+                    <h3 class="text-center w-80  ">
+                
+                      Select the Options</h3>
+                  </div>
+                  <div class="select-params p-2 text-center mt-5 bg-light " id="paramformsection">
+                    <button class="btn-primary btn " id="Default">Default </button>
+                    <button class="btn-primary btn " id="Manual">Manual </button>
+                
+                  </div>
+                
+                </div>
+
+                <div class="carousel-item ">
+                  <div class="sticky-top bg-light p-1">
+                    <button class="btn btn-primary float-left " href="#carouselExampleIndicators" role="button" data-slide="prev">
                       Go back
                     </button>
                 <h3 class="text-center w-80  ">
@@ -305,14 +323,17 @@
                         ROC_AUCscore
                       </label>
                     </div>
-                    <input type="submit" value="Next" class="btn btn-primary mx-5 mt-3">
+                    <div class="mt-3">
+                    <button class="btn btn-primary" id="selectAll">SelectAll</button>
+                    <input type="submit" value="Next" class="btn btn-primary ">
+                    </div>
                     </form>
                   </div>
                 
                 </div>
                 <div class = "carousel-item">
                   <div class="sticky-top bg-light p-1">
-                    <button class="btn btn-primary float-left prev" href="#carouselExampleIndicators" role="button">
+                    <button class="btn btn-primary float-left " href="#carouselExampleIndicators" role="button" data-slide="prev">
                       Go back
                     </button>
                     <h3 class="text-center w-80  ">
@@ -325,13 +346,13 @@
               
              
             </div>
-            <!-- <button class=" float-bottom   bg-light">
+            <button class=" float-bottom   bg-light">
              
               <a class="" href="#carouselExampleIndicators" role="button" data-slide="next">
                 Next
                 <span class="sr-only">Previous</span>
               </a>
-            </button> -->
+            </button>
           </div>
          
         </div>
@@ -357,8 +378,15 @@
 
    
   }
+  function checkIsExcel(file) {
+      if ((!/.*\.xlsx$/.test(file.name)) && (!/.*\.xls$/.test(file.name)) && (!/.*\.csv$/.test(file.name))) {
+        return false;
+      }
+      return true;
+    }
   $(document).ready(function () {
-    let fieldSelected=""
+    let fieldSelected="";
+    let isdefault= false
     const data = {
       LogisticRegression: ["C Parameter"],
       DecisionTree: ["Max-depth"],
@@ -375,7 +403,12 @@
     
     $("#file").submit(()=>{
       event.preventDefault()
-      $('.carousel').carousel('next')
+      if(checkIsExcel($('.fileInput')[0].files[0]))
+     
+      {$('.carousel').carousel('next')}
+      else {
+        alert("please upload csv,xlxs")
+      }
     })
      $("#metric").submit(() => {
       event.preventDefault()
@@ -390,7 +423,10 @@
 
       
     })
-   
+    $("#selectAll").click(()=>{
+       event.preventDefault()
+      $(".checkinput").prop('checked', true);
+    })
     $("#save").click(()=>{
       let selectValue = $("#exampleFormControlSelect1").val();
       const selectText = $("#exampleFormControlSelect1").find(":selected").text()
@@ -398,8 +434,8 @@
       
       const prepareformed = prefareForm(data[selectValue])
       if(prepareformed==="slide"){
-        $('.carousel').carousel(4)
-         
+       
+         $('.carousel').carousel('next')
       
       }
       else{
@@ -419,16 +455,41 @@
       $('.carousel').carousel('next')
     })
     $(".prev").click(()=>{
-      if(data[fieldSelected].length>0||fieldSelected===""){
+      if(fieldSelected===""){
 
         $('.carousel').carousel('prev')
       }
-      else{
-        $('.carousel').carousel(2)
-      }
+       else if(isdefault){
+          if (data[fieldSelected].length > 0) {
+          $('.carousel').carousel(3)
+        }
+        else {
+          $('.carousel').carousel(3)
+        }
+       }
+       
+       else {
+         if(data[fieldSelected].length>0){
+           $('.carousel').carousel('prev')
+         }
+         else{
+           $('.carousel').carousel(3)
+         }
+       }
     })
   
-  
+  $("#Default").click(()=>{
+    isdefault=true
+   $('.carousel').carousel(5)
+  })
+  $("#Manual").click(() => {
+    isdefault=false
+    if(data[fieldSelected].length>0)
+      {$('.carousel').carousel('next')}
+    else{
+      $('.carousel').carousel(5)
+    }  
+    })
   
   })
 </script>
